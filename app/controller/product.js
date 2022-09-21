@@ -27,5 +27,5 @@ class ProductController extends Controller {
     }
   }
 }
-
+console.log(123)
 module.exports = ProductController;
