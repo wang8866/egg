@@ -10,6 +10,8 @@ module.exports = app => {
 
   router.get('/api/product', controller.product.list)
 
+  router.get('/api/product/category', controller.product.category)
+
   router.get('/api/category', controller.category.assort);
 };
 

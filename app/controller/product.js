@@ -2,6 +2,29 @@
 
 const Controller = require('egg').Controller;
 
+const arrToTree = arr => {
+  const newArr = [];
+  const arrJSON= {};
+  arr.forEach(item => {
+    arrJSON[item.categoryId] = item;
+    if (item.parentId === 0) {
+      newArr.push(item);
+    }
+  })
+
+  arr.forEach(item => {
+    if (item.parentId !== 0) {
+      const parent = arrJSON[item.parentId]
+      if (parent.children) {
+        parent.children.push(item)
+      } else {
+        parent.children = [item]
+      }
+    }
+  })
+  return newArr
+}
+
 class ProductController extends Controller {
   async list() {
     const { ctx } = this;
@@ -24,6 +47,15 @@ class ProductController extends Controller {
           promotionInfoList: JSON.parse(item.promotionInfoList)
         }
       })
+    }
+  }
+
+  async category() {
+    const { ctx } = this;
+    const data = await ctx.service.product.category();
+    ctx.body = {
+      code: 1,
+      data: arrToTree(data)
     }
   }
 }
