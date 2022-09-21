@@ -64,7 +64,6 @@ class ProductController extends Controller {
       const data = await ctx.service.product.category();
       const tree = arrToTree(data)
        ids = getTreeId(tree, category_id * 1)
-       console.log(ids)
     }
     const data = await ctx.service.product.select({
       page,
