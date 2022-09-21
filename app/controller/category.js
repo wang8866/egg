@@ -14,5 +14,5 @@ class KindController extends Controller {
     }
   }
 }
-
+console.log(111)
 module.exports = KindController;
