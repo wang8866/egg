@@ -1,11 +1,12 @@
 const Service = require('egg').Service;
 
 class ProductService extends Service {
-  async select({page, page_size, classId}) {
+  async select({page, page_size, ...where}) {
     const data = await this.app.mysql.select('product', {
-      where:{
-        classId
-      },
+      // where:{
+      //   classId
+      // },
+      where,
       limit: page_size * 1,
       offset: (page-1) * page_size
     })

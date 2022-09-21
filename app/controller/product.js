@@ -4,14 +4,13 @@ const Controller = require('egg').Controller;
 
 const arrToTree = arr => {
   const newArr = [];
-  const arrJSON= {};
+  const arrJSON = {};
   arr.forEach(item => {
-    arrJSON[item.categoryId] = item;
+    arrJSON[item.categoryId] = item
     if (item.parentId === 0) {
       newArr.push(item);
     }
   })
-
   arr.forEach(item => {
     if (item.parentId !== 0) {
       const parent = arrJSON[item.parentId]
@@ -25,18 +24,53 @@ const arrToTree = arr => {
   return newArr
 }
 
+const getTreeId = (tree, id, flag) => {
+  let ids = [];
+  if (flag) {
+    tree.forEach(item => {
+      ids.push(item.categoryId);
+      if (item.children) {
+        ids = ids.concat(getTreeId(item.children, id, true))
+      }
+    })
+  } else {
+    tree.forEach(item => {
+      if (item.categoryId === id) {
+        if (item.children) {
+          ids = ids.concat(getTreeId(item.children, id, true))
+        }
+        ids.push(item.categoryId);
+      } else {
+        if (item.children) {
+          ids = ids.concat(getTreeId(item.children, id, false))
+        }
+      }
+    })
+  }
+  return ids
+}
+
 class ProductController extends Controller {
   async list() {
     const { ctx } = this;
     const {
       page = 1,
       page_size = 10,
-      classId
+      // classId,
+      category_id
     } = ctx.query;
+    let ids = '';
+    if (category_id) {
+      const data = await ctx.service.product.category();
+      const tree = arrToTree(data)
+       ids = getTreeId(tree, category_id * 1)
+       console.log(ids)
+    }
     const data = await ctx.service.product.select({
       page,
       page_size,
-      classId
+      // classId,
+      categoryId: ids
     })
     ctx.body = {
       code: 1,
