@@ -49,5 +49,5 @@ class HomeController extends Controller {
   // }
 
 }
-
+console.log(111)
 module.exports = HomeController;
