@@ -12,7 +12,7 @@ module.exports = app => {
 
   router.get('/api/product/category', controller.product.category)
 
-  router.get('/api/category', controller.category.assort);
+  router.get('/api/product/:id', controller.product.detail)
 };
 
   

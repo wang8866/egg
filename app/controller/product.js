@@ -91,6 +91,21 @@ class ProductController extends Controller {
       data: arrToTree(data)
     }
   }
+
+  async detail() {
+    const { ctx } = this;
+    const id = ctx.params
+    const data = await ctx.service.product.detail(id);
+    ctx.body = {
+      code: 1,
+      data: {
+        ...data,
+        promotionInfoList: JSON.parse(data.promotionInfoList),
+        images: JSON.parse(data.images),
+        detail: JSON.parse(data.detail)
+      }
+    }
+  }
 }
 console.log(123)
 module.exports = ProductController;
