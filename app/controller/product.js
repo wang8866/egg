@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const axios = require('axios')
 
 const arrToTree = arr => {
   const newArr = [];
@@ -106,6 +107,20 @@ class ProductController extends Controller {
       }
     }
   }
+
+  async searchTip() {
+    const { ctx } = this;
+    const keyword = ctx.query.keyword
+
+    const res = await axios.get('https://m.ctrip.com/restapi/h5api/globalsearch/search?action=online&source=globalonline&keyword=%E7%88%B1&t=1663948082022', {
+      action: 'online',
+      keyword
+    })
+    ctx.body = {
+      code: 1,
+      data: res.data
+    }
+  }
 }
-console.log(123)
+
 module.exports = ProductController;

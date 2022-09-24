@@ -1,0 +1,52 @@
+{
+	"code": "0",
+	"msg": "成功",
+	"result": {
+		"resultListVO": [{
+			"name": "小王",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|1|tpl1|||\",\"name\":\"酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "小王",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|2|tpl1|||\",\"name\":\"安慕希酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "小王",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|3|tpl1|||\",\"name\":\"简爱酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "卡士酸奶",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|4|tpl1|||\",\"name\":\"卡士酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "无糖酸奶",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|5|tpl1|||\",\"name\":\"无糖酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "蒙牛酸奶",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|6|tpl1|||\",\"name\":\"蒙牛酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "伊利酸奶",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|7|tpl1|||\",\"name\":\"伊利酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}, {
+			"name": "光明酸奶",
+			"count": "0",
+			"type": 0,
+			"userAction": "{\"spm_id\":\"sugtext|1|8|tpl1|||\",\"name\":\"光明酸奶\",\"pageId\":\"9426a2ee3da48057281f4306fef5aee6\",\"keyword\":\"酸奶\"}"
+		}]
+	},
+	"abTest": [],
+	"traceId": "H5_DEV_F1AA37D9-5640-4FD9-8858-A942CDED8F9F1663924709394",
+	"umpTraceId": "612167.48429.16639247094381674",
+	"imgType": 1,
+	"success": true
+}
