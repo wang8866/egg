@@ -11,4 +11,6 @@ module.exports = app => {
   router.get('/api/product/category', controller.product.category)
   router.get('/api/product/:id', controller.product.detail)
   router.get('/api/search/tip', controller.product.searchTip)
+  router.post('/api/user/register', controller.user.register)
+  router.post('/api/user/login', controller.user.login)
 };
