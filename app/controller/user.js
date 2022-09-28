@@ -3,27 +3,69 @@
 const jwt = require('jsonwebtoken');
 const Controller = require('egg').Controller;
 
+const random = (min, max) => {
+  return Math.round(min + Math.random() * (max - min))
+}
+const randomNumber = (len = 6) => {
+  let num = ''
+  while (num.length < len) {
+    num += random(0, 9)
+  }
+  return num
+}
+
 class UserController extends Controller {
-  async login() {
+  async sendCode() {
     const { ctx } = this;
-    const user = await ctx.service.user.find({
-      account: ctx.request.body.account,
-      password: ctx.request.body.password,
-    });
-    if (Object.keys(user).length >= 1) {
-      const token = jwt.sign({
-        ...user,
-      }, '123456')
+    const { phone } = ctx.query
+    if(phone && phone.length === 11) {
+      ctx.session.messageCode = randomNumber(6)
       ctx.body = {
         code: 1,
-        token,
-        message: '登录成功'
+        message: `验证码[${ctx.session.messageCode}]已经发送至手机用户${phone}`
       }
     } else {
-      ctx.body = {
+      ctx.throw(422, {
+        message: '请输入正确的手机号'
+      })
+    }
+  }
+
+  async login() {
+    const { ctx } = this;
+    const { phone, code } = ctx.request.body
+    if (code !== ctx.session.messageCode) {
+      ctx.throw(422, {
         code: 0,
-        message: '账号密码错误'
+        message: '验证码错误'
+      })
+    } else {
+      const user = await ctx.service.user.find({
+        phone
+      });
+      if (user) {
+        const token = jwt.sign({
+          ...user,
+        }, '123456')
+        ctx.body = {
+          code: 1,
+          token,
+          message: '登录成功'
+        }
+      } else {
+        ctx.throw(422, {
+          code: 0,
+          message: '用户未注册'
+        })
       }
+    }
+  }
+
+  async info() {
+    const { ctx } = this;
+    ctx.body = {
+      code: 1,
+      data: ctx.info
     }
   }
 
@@ -34,7 +76,7 @@ class UserController extends Controller {
         name: ctx.request.body.name,
         phone: ctx.request.body.phone,
       });
-      if (Object.keys(user).length >= 1) {
+      if (user) {
         console.log(user)
         ctx.throw(422, {
           code: 0,
