@@ -16,4 +16,8 @@ module.exports = app => {
   router.post('/api/user/login', controller.user.login)
   router.get('/api/user/info', controller.user.info)
   router.get('/api/user/sendMessageCode', controller.user.sendCode)
+
+  router.post('/api/address', controller.address.create)
+  router.get('/api/address', controller.address.list)
+  router.put('/api/address/:id', controller.address.update)
 };
