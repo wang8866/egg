@@ -20,4 +20,10 @@ module.exports = app => {
   router.post('/api/address', controller.address.create)
   router.get('/api/address', controller.address.list)
   router.put('/api/address/:id', controller.address.update)
+  
+  router.post('/api/car', controller.car.create)
+  router.get('/api/car', controller.car.list)
+  router.put('/api/car/:id', controller.car.update)
+  router.put('/api/car', controller.car.updateAll)
+  router.delete('/api/car/:id', controller.car.delete)
 };
